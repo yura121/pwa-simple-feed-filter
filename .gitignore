@@ -1,0 +1,46 @@
+# Vendor dll build
+dlls
+
+# compiled output
+/dist
+/public
+/tmp
+/www
+/electron
+/android
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+*.log
+/typings
+
+# System Files
+.DS_Store
+.DS_Store?
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db

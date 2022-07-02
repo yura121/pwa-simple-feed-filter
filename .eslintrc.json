@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:vue/essential",
+        "airbnb-base"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "no-underscore-dangle":  "off",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "no-console": "off",
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ],
+        "vue/script-indent": [
+            "error",
+            4,
+            {
+                "baseIndent": 1
+            }
+        ],
+        "indent": "off",
+        "indent-legacy": [
+            "error",
+            4
+        ],
+        "import/no-unresolved": "off",
+        "vue/mustache-interpolation-spacing": ["error", "always"]
+    }
+}

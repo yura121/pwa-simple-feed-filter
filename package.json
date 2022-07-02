@@ -1,0 +1,41 @@
+{
+    "name": "@yura121/pwa-simple-feed-filter",
+    "version": "0.0.1",
+    "description": "Простой фильтр ленты для чтения",
+    "author": "Yuriy Gerasimenko <y.gerassimenko@gmail.com>",
+    "scripts": {
+        "build": "webpack",
+        "start": "nodemon ./stubs",
+        "pwa": "yarn build && cd dist && http-server && cd ..",
+        "deploy": "yarn version --patch && ./deploy.sh"
+    },
+    "main": "index.js",
+    "dependencies": {
+        "vue": "2.6.14",
+        "vuetify": "2.6.3"
+    },
+    "devDependencies": {
+        "@babel/cli": "7.8.3",
+        "@babel/core": "7.8.3",
+        "@babel/preset-env": "7.8.7",
+        "babel-loader": "8.0.6",
+        "clean-webpack-plugin": "3.0.0",
+        "copy-webpack-plugin": "5.1.2",
+        "css-loader": "3.4.2",
+        "eslint": "6.8.0",
+        "eslint-config-airbnb-base": "14.0.0",
+        "eslint-loader": "3.0.3",
+        "eslint-plugin-import": "2.20.1",
+        "eslint-plugin-vue": "6.2.1",
+        "express": "4.17.1",
+        "html-webpack-plugin": "4",
+        "http-server": "14.1.0",
+        "nodemon": "2.0.2",
+        "vue-loader": "15.8.3",
+        "vue-template-compiler": "2.6.14",
+        "webpack": "4.41.5",
+        "webpack-cli": "3.3.10",
+        "webpack-dev-middleware": "3.7.2",
+        "webpack-hot-middleware": "2.25.0"
+    }
+}
