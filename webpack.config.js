@@ -55,7 +55,6 @@ module.exports = {
             { from: 'stubs/favicon.ico' },
             { from: 'stubs/robots.txt' },
             { from: 'stubs/manifest.json' },
-            { from: 'stubs/index.php' },
             {
                 from: 'node_modules/vue/dist/vue.min.js',
                 to: 'js/vue.min.js',
