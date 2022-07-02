@@ -7,7 +7,8 @@
     "scripts": {
         "build": "webpack",
         "start": "nodemon ./stubs",
-        "pwa": "yarn build && cd dist && symfony server:start && cd ..",
+        "pwa-start": "http-server ./dist --cors -s -S -C ./stubs/pwa-simple-feed-filter.test.pem -K ./stubs/pwa-simple-feed-filter.test-key.pem",
+        "pwa-build": "yarn build && npm run pwa-start",
         "deploy": "yarn version --patch && ./deploy.sh"
     },
     "main": "index.js",

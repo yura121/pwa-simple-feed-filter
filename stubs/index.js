@@ -10,8 +10,8 @@ const webpackConfig = require('../webpack.config.dev');
 const app = express();
 const compiler = webpack(webpackConfig);
 const reqPath = path.join(__dirname, './');
-const key = fs.readFileSync(path.resolve(reqPath, 'localhost-key.pem'), 'utf-8');
-const cert = fs.readFileSync(path.resolve(reqPath, 'localhost.pem'), 'utf-8');
+const key = fs.readFileSync(path.resolve(reqPath, 'pwa-simple-feed-filter.test-key.pem'), 'utf-8');
+const cert = fs.readFileSync(path.resolve(reqPath, 'pwa-simple-feed-filter.test.pem'), 'utf-8');
 
 app.use(
     webpackDevMiddleware(compiler, {
