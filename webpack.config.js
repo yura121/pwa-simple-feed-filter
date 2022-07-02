@@ -2,6 +2,7 @@ const WebpackCopy = require('copy-webpack-plugin');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
@@ -52,6 +53,9 @@ module.exports = {
         new WebpackCopy([
             { from: 'stubs/index.html' },
             { from: 'stubs/favicon.ico' },
+            { from: 'stubs/robots.txt' },
+            { from: 'stubs/manifest.json' },
+            { from: 'stubs/index.php' },
             {
                 from: 'node_modules/vue/dist/vue.min.js',
                 to: 'js/vue.min.js',
@@ -80,6 +84,18 @@ module.exports = {
             templateParameters: {
                 isPWA: true,
             },
+        }),
+        new WorkboxPlugin.GenerateSW({
+            mode: 'development',
+            clientsClaim: true,
+            skipWaiting: false,
+            navigateFallback: '/index.html',
+            directoryIndex: '/index.html',
+            exclude: [
+                /^\..*$/,
+                /^.*\.php$/,
+                'robots.txt',
+            ],
         }),
         new webpack.DefinePlugin({
             'process.env': {

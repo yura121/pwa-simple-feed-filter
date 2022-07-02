@@ -64,16 +64,21 @@
                 </v-row>
             </v-container>
         </v-main>
+        <update-notify v-model="prompt" @update-app="update()" @skip-update-app="skipUpdate()"></update-notify>
     </v-app>
 </template>
 
 <script>
     import FeedItem from '@src/components/feed-item';
+    import UpdateNotify from '@src/components/update-notify';
+    import UpdateApp from '@src/mixins/update-app';
 
     export default {
         components: {
             FeedItem,
+            UpdateNotify,
         },
+        mixins: [UpdateApp],
         data: () => ({
             cards: ['Today'],
             drawer: null,

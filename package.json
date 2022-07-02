@@ -3,17 +3,21 @@
     "version": "0.0.1",
     "description": "Простой фильтр ленты для чтения",
     "author": "Yuriy Gerasimenko <y.gerassimenko@gmail.com>",
+    "license": "CC-BY-NC-ND-4.0",
     "scripts": {
         "build": "webpack",
         "start": "nodemon ./stubs",
-        "pwa": "yarn build && cd dist && http-server && cd ..",
+        "pwa": "yarn build && cd dist && symfony server:start && cd ..",
         "deploy": "yarn version --patch && ./deploy.sh"
     },
     "main": "index.js",
     "dependencies": {
+        "swiper": "6.8.4",
         "swiper-vue2": "1.0.9",
         "vue": "2.6.14",
-        "vuetify": "2.6.3"
+        "vuetify": "2.6.3",
+        "workbox-webpack-plugin": "6.4.2",
+        "workbox-window": "6.4.2"
     },
     "devDependencies": {
         "@babel/cli": "7.8.3",
