@@ -4,26 +4,19 @@
             <v-spacer>Версия: {{ appVersion }}</v-spacer>
         </v-system-bar>
         <v-main>
-            <v-container
-                class="py-8 px-6"
-                fluid
-            >
+            <v-container class="py-8 px-6" fluid>
                 <v-row>
-                    <v-col
-                        v-for="card in cards"
-                        :key="card"
-                        cols="12"
-                    >
+                    <v-col cols="12">
                         <v-card>
                             <v-list two-line>
-                                <template v-for="n in 6">
+                                <template v-for="(feedItem, index) in feedItemList">
                                     <feed-item
-                                        :id="n"
-                                        :key="n"
+                                        :data="feedItem"
+                                        :key="feedItem.id"
                                     ></feed-item>
                                     <v-divider
-                                        v-if="n !== 6"
-                                        :key="`divider-${n}`"
+                                        v-if="index !== (listCount - 1)"
+                                        :key="`divider-${feedItem.id}`"
                                     ></v-divider>
                                 </template>
                             </v-list>
@@ -40,6 +33,7 @@
     import FeedItem from '@src/components/feed-item';
     import UpdateNotify from '@src/components/update-notify';
     import UpdateApp from '@src/mixins/update-app';
+    import { GET_ALL_FEED_ITEMS_QUERY } from '@src/graphql/queries/feedQuery';
 
     export default {
         components: {
@@ -56,11 +50,20 @@
                 ['mdi-delete', 'Trash'],
                 ['mdi-alert-octagon', 'Spam'],
             ],
+            feedItemList: [],
         }),
         computed: {
             appVersion() {
                 return this.$store.getters.APP_VERSION;
             },
+            listCount() {
+                return this.feedItemList.length;
+            },
+        },
+        async mounted() {
+            const { data } = await this.$apollo.query({ query: GET_ALL_FEED_ITEMS_QUERY });
+            const { feedItems } = data.feedItemList;
+            this.feedItemList = feedItems;
         },
     };
 </script>

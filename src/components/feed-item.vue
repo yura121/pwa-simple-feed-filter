@@ -1,5 +1,5 @@
 <template>
-    <v-list-item :id="id">
+    <v-list-item :id="data.id">
         <v-list-item-content>
             <swiper
                 :initial-slide="1"
@@ -7,9 +7,15 @@
                 :space-between="50"
                 @slideChange="onSlideChange"
             >
-                <swiper-slide class="read"><v-list-item-title>Статья {{ id }}</v-list-item-title></swiper-slide>
-                <swiper-slide><v-list-item-title>Статья {{ id }}</v-list-item-title></swiper-slide>
-                <swiper-slide class="trash"><v-list-item-title>Статья {{ id }}</v-list-item-title></swiper-slide>
+                <swiper-slide class="read">
+                    <v-list-item-title>{{ data.title }}</v-list-item-title>
+                </swiper-slide>
+                <swiper-slide>
+                    <v-list-item-title>{{ data.title }}</v-list-item-title>
+                </swiper-slide>
+                <swiper-slide class="trash">
+                    <v-list-item-title>{{ data.title }}</v-list-item-title>
+                </swiper-slide>
             </swiper>
         </v-list-item-content>
     </v-list-item>
@@ -28,7 +34,7 @@
     import { Swiper, SwiperSlide } from 'swiper-vue2';
 
     export default {
-        props: ['id'],
+        props: ['data'],
         components: {
             Swiper,
             SwiperSlide,
