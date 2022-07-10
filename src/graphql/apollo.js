@@ -4,10 +4,8 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import VueApollo from 'vue-apollo';
 
-const APP_GRAPHQL_ENDPOINT = process.env.APP_GRAPHQL_ENDPOINT || 'https://127.0.0.1:8000/graphql/';
-
 const httpLink = new HttpLink({
-    uri: APP_GRAPHQL_ENDPOINT,
+    uri: process.env.VUE_APP_GRAPHQL_ENDPOINT || 'https://127.0.0.1:8000/graphql/',
 });
 
 export const apolloClient = new ApolloClient({
