@@ -31,20 +31,14 @@ app.use('/font/:file', (request, response) => {
     response.sendFile(path.resolve(reqPath, `font/${request.params.file}`));
 });
 
-app.use('/data/:file', (request, response) => {
-    response.sendFile(path.resolve(reqPath, `data/${request.params.file}`));
-});
-
 app.use('/', (request, response) => {
     let indexHtml = fs.readFileSync(path.resolve(reqPath, 'index.html'), 'utf-8');
     indexHtml = indexHtml.replace("'unsafe-inline'", "'unsafe-eval'");
     response.send(indexHtml);
 });
 
-// const port = 3030;
-// app.listen(port, () => console.log(`Available on: http://localhost:${port}\n`));
 const port = 3031;
 https.createServer({ key, cert }, app)
-    .listen(port, () => console.log(`Available on: https://localhost:${port}\n`));
+    .listen(port, () => console.log(`Available on: https://pwa-simple-feed-filter.test:${port}\n`));
 
 module.exports = app;

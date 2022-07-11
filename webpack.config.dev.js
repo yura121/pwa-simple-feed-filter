@@ -53,6 +53,7 @@ module.exports = {
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new WebpackCopy([
+            { from: 'stubs/favicon.ico' },
             {
                 from: 'node_modules/vue/dist/vue.min.js',
                 to: 'js/vue.min.js',
