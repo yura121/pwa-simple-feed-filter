@@ -3,6 +3,7 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const outputDirectory = 'dist';
 const version = process.env.npm_package_version || 0;
@@ -73,6 +74,9 @@ module.exports = {
             'process.env': {
                 APP_VERSION: `"${version}"`,
             },
+        }),
+        new Dotenv({
+            path: './.env.dev',
         }),
     ],
     externals: {

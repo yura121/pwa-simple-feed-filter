@@ -5,11 +5,12 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const outputDirectory = 'dist';
 const version = process.env.npm_package_version || 0;
 
-module.exports = {
+module.exports = (env) => ({
     mode: 'production',
     entry: [
         '@src/index.js',
@@ -101,6 +102,9 @@ module.exports = {
                 APP_VERSION: `"${version}"`,
             },
         }),
+        new Dotenv({
+            path: `./.env.${env}`,
+        }),
     ],
     externals: {
         vue: 'Vue',
@@ -112,4 +116,4 @@ module.exports = {
         },
         extensions: ['.js', '.vue'],
     },
-};
+});

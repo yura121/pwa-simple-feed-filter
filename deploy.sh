@@ -4,7 +4,7 @@
 set -e
 
 # build
-yarn build
+yarn webpack --env prod
 
 # navigate into the build output directory
 cd dist

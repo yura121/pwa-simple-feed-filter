@@ -44,3 +44,5 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+/.env
+/.env.*
