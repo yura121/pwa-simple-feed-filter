@@ -39,10 +39,14 @@
             Swiper,
             SwiperSlide,
         },
-        methods: {
-            onSlideChange() {
+        setup() {
+            function onSlideChange() {
                 console.log('slide change');
-            },
+            }
+
+            return {
+                onSlideChange,
+            };
         },
     };
 </script>

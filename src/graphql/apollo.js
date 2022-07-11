@@ -1,21 +1,15 @@
-import Vue from 'vue';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import VueApollo from 'vue-apollo';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core';
+import { provideApolloClient } from '@vue/apollo-composable';
 
-const httpLink = new HttpLink({
+const httpLink = createHttpLink({
     uri: process.env.VUE_APP_GRAPHQL_ENDPOINT,
 });
 
+const cache = new InMemoryCache();
+
 export const apolloClient = new ApolloClient({
     link: httpLink,
-    cache: new InMemoryCache(),
-    connectToDevTools: true,
+    cache,
 });
 
-Vue.use(VueApollo);
-
-export const apolloProvider = new VueApollo({
-    defaultClient: apolloClient,
-});
+provideApolloClient(apolloClient);

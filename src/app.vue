@@ -15,7 +15,7 @@
                                         :key="feedItem.id"
                                     ></feed-item>
                                     <v-divider
-                                        v-if="index !== (listCount - 1)"
+                                        v-if="index !== (feedItemList.length - 1)"
                                         :key="`divider-${feedItem.id}`"
                                     ></v-divider>
                                 </template>
@@ -34,6 +34,9 @@
     import UpdateNotify from '@src/components/update-notify';
     import UpdateApp from '@src/mixins/update-app';
     import { GET_ALL_FEED_ITEMS_QUERY } from '@src/graphql/queries/feedQuery';
+    import { computed } from '@vue/composition-api';
+    import { useStore } from '@vueblocks/vue-use-vuex';
+    import { useQuery } from '@vue/apollo-composable';
 
     export default {
         components: {
@@ -41,29 +44,25 @@
             UpdateNotify,
         },
         mixins: [UpdateApp],
-        data: () => ({
-            cards: ['Today'],
-            drawer: null,
-            links: [
-                ['mdi-inbox-arrow-down', 'Inbox'],
-                ['mdi-send', 'Send'],
-                ['mdi-delete', 'Trash'],
-                ['mdi-alert-octagon', 'Spam'],
-            ],
-            feedItemList: [],
-        }),
-        computed: {
-            appVersion() {
-                return this.$store.getters.APP_VERSION;
-            },
-            listCount() {
-                return this.feedItemList.length;
-            },
-        },
-        async mounted() {
-            const { data } = await this.$apollo.query({ query: GET_ALL_FEED_ITEMS_QUERY });
-            const { feedItems } = data.feedItemList;
-            this.feedItemList = feedItems;
+        setup() {
+            const store = useStore();
+
+            const appVersion = computed(() => store.getters.APP_VERSION);
+            const { result } = useQuery(GET_ALL_FEED_ITEMS_QUERY);
+
+            const feedItemList = computed(() => {
+                if (result.value) {
+                    const { feedItems } = result.value.feedItemList;
+                    return feedItems;
+                }
+                return [];
+            });
+
+            return {
+                result,
+                feedItemList,
+                appVersion,
+            };
         },
     };
 </script>
